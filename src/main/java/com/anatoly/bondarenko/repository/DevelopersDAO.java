@@ -5,11 +5,15 @@ import com.anatoly.bondarenko.domain.Gender;
 import lombok.Data;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+
 
 @Data
 public class DevelopersDAO extends GenericDAO <Developers> {
@@ -52,14 +56,78 @@ public class DevelopersDAO extends GenericDAO <Developers> {
     ///////////////////////////////////////////
 
 
-    public List<Developers> getDevelopersBySkill(String language){
+    public List<Objects[]> getDevelopersBySkill(String language){
         EntityManager entityManager = getEntityManager();
 
-        String query = (String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s' ", language));
+      //  String query = (String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language));
 
-        List<Developers> developers = entityManager.createNativeQuery(query).getResultList() ;
+        String query = (String.format(" SELECT * FROM developers", Developers.class));
 
 
+        List<Objects[]> developers = entityManager.createNativeQuery(query).getResultList();
+
+
+        System.out.println("number of developers = " + developers.size());
+        System.out.println(developers);
+
+        if (developers.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        for(Objects[] person : developers) {
+            Objects id = person[0];
+            Objects name = person[1];
+            System.out.println("Developer " + id + "  " + name);
+        }
+
+/*
+        for (Developers d : developers) {
+            System.out.println("Developer "
+                    + d.getId()
+                    + " "
+                    + d.getName());
+        }
+*/
+
+
+
+/*
+        new Configuration().configure().buildSessionFactory().getCurrentSession();
+        Query query2 = createSQLQuery(query).addEntity(Developers.class);
+
+*/
+
+
+
+        //   List<Object[]> rows = query.list();
+
+/*
+
+        for(Developers row : developers) {
+            Developers developer2 = new Developers();
+
+         //   developer2.setId     (Long.valueOf(row[0].toString()));
+            developer2.setId(Long.valueOf(developers.get(0).toString()));
+            developer2.setName(String.valueOf(developers.get(1).toString()));
+            developer2.setGender(Gender.valueOf(developers.get(2).toString()));
+            developer2.setAge(Integer.valueOf(developers.get(3).toString()));
+            developer2.setSalary(BigDecimal.valueOf(Long.parseLong(developers.get(4).toString())));
+
+            System.out.println(developer2.toString());
+        }
+*/
+
+
+/*
+        for (Iterator<Developers> it = developers.iterator(); it.hasNext();) {
+            Developers developer = (Developers) it.next();
+            System.out.println(developer.toString());
+        }
+*/
+
+
+
+      ////  Solve the problem of duplicated sql alias [id]
       //  SELECT t.id , b.id FROM table AS t INNER JOIN bench AS b ON (t.bench_id = b.id) INNER JOIN window AS w ON (t.window_id = w.id)
 
       //       The select clause did not have unique alias for t.id and b.id. I fixed it by having unique alias as below.

@@ -3,8 +3,8 @@ package com.anatoly.bondarenko.service;
 import com.anatoly.bondarenko.repository.DevelopersDAO;
 import com.anatoly.bondarenko.domain.Developers;
 
-import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Objects;
 
 public class DevelopersService {
 
@@ -19,7 +19,7 @@ public class DevelopersService {
 
 
 
-    public List<Developers> getDevelopersBySkill(String language) {
+    public List<Objects[]> getDevelopersBySkill(String language) {
         return developersDAO.getDevelopersBySkill(language);
     }
 

@@ -7,13 +7,14 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
 public class Main {
 
 
-//    static ShowTables showTables = new ShowTables();          //  Все представления данных вынесены в класс ShowTables
+    static ShowTables showTables = new ShowTables();          //  Все представления данных вынесены в класс ShowTables
 
     private static final DevelopersDAO developersDAO = new DevelopersDAO();
     private static final CompaniesDAO companiesDAO = new CompaniesDAO();
@@ -50,7 +51,11 @@ public class Main {
         ///////////////////////////////////////////////////////
 
         System.out.println("\n  HIBERNATE  TASKS  !!!!!!!!!!!!!!!!!!!!!! \n");
+
         System.out.println(developersService.getDevelopersBySkill(languages.JAVA));
+
+
+      //  showTables.displayEnities(developersService.getDevelopersBySkill(languages.JAVA));
 
 
 

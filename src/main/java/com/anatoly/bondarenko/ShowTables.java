@@ -173,6 +173,8 @@ public class ShowTables {
 
         for (Developers developer : list) {
 
+            System.out.println(developer);
+
             Long id = developer.getId();
             String name = developer.getName();
             Gender gender = developer.getGender();

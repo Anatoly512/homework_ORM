@@ -47,7 +47,6 @@ public class Developers {
     private Set<Skills> skills = new HashSet<>();
 
 
-
     public Developers(Long id, String name, Gender gender, Integer age, BigDecimal salary) {
         this.id = id;
         this.name = name;
@@ -56,15 +55,15 @@ public class Developers {
         this.salary = salary;
     }
 
-   public Developers() {     //  Этот конструктор нужен для корректной работы класса DevelopersDAO,
-                             //  пустые поля потом (после создания объекта) заполняются через сеттеры
-   }
+    public Developers() {     //  Этот конструктор нужен для корректной работы класса DevelopersDAO,
+        //  пустые поля потом (после создания объекта) заполняются через сеттеры
+    }
 
 
 // getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
 
     public String getName() {
-       return this.name;
+        return this.name;
     }
 
     public Gender getGender() {
@@ -81,6 +80,10 @@ public class Developers {
 
     public Long getId() {
         return this.id;
+    }
+
+    public Set<Skills> getSkills() {
+        return this.skills;
     }
 
 
@@ -106,5 +109,17 @@ public class Developers {
         this.id = id;
     }
 
-}
 
+
+
+/*
+
+    @Override
+    public String toString() {
+        return " id = " + id + " name =  " + name + " gender = " + gender + " age = " + age + " salary = " + salary;
+    }
+
+*/
+
+
+}
