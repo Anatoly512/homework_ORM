@@ -19,7 +19,7 @@ public class DevelopersService {
 
 
 
-    public List<Objects[]> getDevelopersBySkill(String language) {
+    public List<Developers> getDevelopersBySkill(String language) {
         return developersDAO.getDevelopersBySkill(language);
     }
 

@@ -56,15 +56,15 @@ public class DevelopersDAO extends GenericDAO <Developers> {
     ///////////////////////////////////////////
 
 
-    public List<Objects[]> getDevelopersBySkill(String language){
+    public List<Developers> getDevelopersBySkill(String language){
         EntityManager entityManager = getEntityManager();
 
       //  String query = (String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language));
 
-        String query = (String.format(" SELECT * FROM developers", Developers.class));
+        String query = (String.format(" SELECT * FROM developers"));
 
 
-        List<Objects[]> developers = entityManager.createNativeQuery(query).getResultList();
+        List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers").getResultList();
 
 
         System.out.println("number of developers = " + developers.size());
@@ -74,11 +74,6 @@ public class DevelopersDAO extends GenericDAO <Developers> {
             return new ArrayList<>();
         }
 
-        for(Objects[] person : developers) {
-            Objects id = person[0];
-            Objects name = person[1];
-            System.out.println("Developer " + id + "  " + name);
-        }
 
 /*
         for (Developers d : developers) {
