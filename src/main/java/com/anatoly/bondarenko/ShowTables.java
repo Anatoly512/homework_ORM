@@ -5,6 +5,8 @@ import com.anatoly.bondarenko.domain.Developers;
 import com.anatoly.bondarenko.domain.DevelopersProjects;
 import com.anatoly.bondarenko.domain.Gender;
 import com.anatoly.bondarenko.domain.SkillLevel;
+import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,6 +14,8 @@ import java.util.Date;
 import java.sql.*;
 import java.util.List;
 
+@ToString
+@Data
 public class ShowTables {
 
 /*

@@ -3,6 +3,8 @@ package com.anatoly.bondarenko.repository;
 import com.anatoly.bondarenko.domain.Developers;
 import com.anatoly.bondarenko.domain.Gender;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.EntityManager;
 
@@ -10,11 +12,10 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
-
+@EqualsAndHashCode(callSuper = true)
+@ToString
 @Data
 public class DevelopersDAO extends GenericDAO <Developers> {
 
@@ -61,7 +62,7 @@ public class DevelopersDAO extends GenericDAO <Developers> {
 
       //  String query = (String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language));
 
-        String query = (String.format(" SELECT * FROM developers"));
+      //  String query = (String.format(" SELECT * FROM developers"));
 
 
         List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers").getResultList();
@@ -70,15 +71,22 @@ public class DevelopersDAO extends GenericDAO <Developers> {
         System.out.println("number of developers = " + developers.size());
         System.out.println(developers);
 
-        if (developers.isEmpty()) {
-            return new ArrayList<>();
+
+        for (Developers developer : developers) {
+            Long id = developer.getId();
+            String name = developer.getName();
+            Gender gender = developer.getGender();
+            int age = developer.getAge();
+            BigDecimal salary = developer.getSalary();
+
+            System.out.println(String.format("  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
         }
 
 
 /*
         for (Developers d : developers) {
             System.out.println("Developer "
-                    + d.getId()
+                    + d.getId().toString()
                     + " "
                     + d.getName());
         }
@@ -130,7 +138,7 @@ public class DevelopersDAO extends GenericDAO <Developers> {
       //  SELECT t.id as table_id, b.id as bench_id FROM table AS t INNER JOIN bench AS b ON (t.bench_id = b.id) INNER JOIN window AS w ON (t.window_id = w.id) INNER JOIN seat AS s ON (s.id = w.target_id)
 
 
-        System.out.println(developers);
+      //  System.out.println(developers);
 
         entityManager.close();
 

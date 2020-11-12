@@ -5,10 +5,12 @@ import com.anatoly.bondarenko.domain.*;
 import com.anatoly.bondarenko.service.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@ToString
 @Data
 @RequiredArgsConstructor
 public class Main {
