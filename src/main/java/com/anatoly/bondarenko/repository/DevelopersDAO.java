@@ -69,11 +69,11 @@ public class DevelopersDAO extends GenericDAO <Developers> {
         for (Developers developer : developers) {
             Long id = developer.getId();
             String name = developer.getName();
-      //      Gender gender = developer.getGender();
+            Gender gender = developer.getGender();
             int age = developer.getAge();
             BigDecimal salary = developer.getSalary();
 
-            System.out.println(String.format("  id = %d, name = %s, age = %s, salary = %s", id, name, age, salary));
+            System.out.println(String.format("  id = %d, name = %s, gender = %s, age = %s, salary = %s", id, name, gender, age, salary));
         }
 
 

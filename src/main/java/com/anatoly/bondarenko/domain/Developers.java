@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Table(name = "developers")
 public class Developers {
 
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -26,8 +28,10 @@ public class Developers {
     @Column(name = "name")
     private String name;
 
-//    @Column(name = "gender")
-//    private Gender gender;
+    @Enumerated(EnumType.STRING)
+    @Type(type = "com.anatoly.bondarenko.domain.GenderPostgresqlEnum")
+    @Column(name = "gender")
+    private Gender gender;
 
     @Column(name = "age")
     private Integer age;
@@ -55,19 +59,19 @@ public class Developers {
     }
 
     public Developers() {     //  Этот конструктор нужен для корректной работы класса DevelopersDAO,
-        //  пустые поля потом (после создания объекта) заполняются через сеттеры
+                              //  пустые поля потом (после создания объекта) заполняются через сеттеры
     }
 
 
-// getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
+// getters
 
     public String getName() {
         return this.name;
     }
 
-/*    public Gender getGender() {
+    public Gender getGender() {
         return this.gender;
-    }*/
+    }
 
     public Integer getAge() {
         return this.age;
@@ -92,9 +96,9 @@ public class Developers {
         this.name = name;
     }
 
-/*    public void setGender(Gender gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
-    }*/
+    }
 
     public void setAge(Integer age) {
         this.age = age;
@@ -113,7 +117,7 @@ public class Developers {
 
     @Override
     public String toString() {
-        return " Id = " + this.id + " Name =  " + this.name + " Age = " + this.age + " Salary = " + this.salary;
+        return " Id = " + this.id + " Name =  " + this.name + " Gender = " + gender + " Age = " + this.age + " Salary = " + this.salary;
     }
 
 
