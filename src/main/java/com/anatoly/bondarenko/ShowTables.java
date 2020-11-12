@@ -161,11 +161,11 @@ public class ShowTables {
 
             Long id = developer.getId();
             String name = developer.getName();
-            Gender gender = developer.getGender();
+         //   Gender gender = developer.getGender();
             int age = developer.getAge();
             BigDecimal salary = developer.getSalary();
 
-            System.out.println(String.format(string + " id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
+            System.out.println(String.format(string + " id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, age, salary));
 
         }
 
@@ -181,11 +181,11 @@ public class ShowTables {
 
             Long id = developer.getId();
             String name = developer.getName();
-            Gender gender = developer.getGender();
+     //       Gender gender = developer.getGender();
             int age = developer.getAge();
             BigDecimal salary = developer.getSalary();
 
-            System.out.println(String.format("  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
+            System.out.println(String.format("  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, age, salary));
 
         }
 

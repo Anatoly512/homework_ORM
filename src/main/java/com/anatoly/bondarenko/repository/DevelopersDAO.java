@@ -21,13 +21,13 @@ public class DevelopersDAO extends GenericDAO <Developers> {
 
     @Override
     protected String createQueryForUpdate(Long id, Developers developers) {
-        return String.format("UPDATE developers SET name = '%s', gender = '%s', age = '%d', salary = '%s' WHERE id = '%d'", developers.getName(), developers.getGender(), developers.getAge(), developers.getSalary(), id);
+        return String.format("UPDATE developers SET name = '%s', gender = '%s', age = '%d', salary = '%s' WHERE id = '%d'", developers.getName(), developers.getName(), developers.getAge(), developers.getSalary(), id);
     }
 
 
     @Override
     protected String createQuery(Developers developers) {
-        return String.format("INSERT INTO developers (id, name, gender, age, salary) VALUES ('%d', '%s', '%s', '%s', '%s')", developers.getId(), developers.getName(), developers.getGender(), developers.getAge(), developers.getSalary());
+        return String.format("INSERT INTO developers (id, name, gender, age, salary) VALUES ('%d', '%s', '%s', '%s', '%s')", developers.getId(), developers.getName(), developers.getName(), developers.getAge(), developers.getSalary());
     }
 
 
@@ -40,7 +40,7 @@ public class DevelopersDAO extends GenericDAO <Developers> {
                                                                 //  Далее поля заполняются через сеттеры в обязательном порядке.
                 developerEntity.setId(resultSet.getLong("id"));
                 developerEntity.setName(resultSet.getString("name"));
-                developerEntity.setGender(Gender.valueOf(resultSet.getString("gender").toUpperCase()));
+          //      developerEntity.setGender(Gender.valueOf(resultSet.getString("gender").toUpperCase()));
                 developerEntity.setAge(resultSet.getInt("age"));
                 developerEntity.setSalary(resultSet.getBigDecimal("salary"));
                 developers.add(developerEntity);
@@ -65,7 +65,7 @@ public class DevelopersDAO extends GenericDAO <Developers> {
       //  String query = (String.format(" SELECT * FROM developers"));
 
 
-        List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers").getResultList();
+        List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers", Developers.class).getResultList();
 
 
         System.out.println("number of developers = " + developers.size());
@@ -75,11 +75,11 @@ public class DevelopersDAO extends GenericDAO <Developers> {
         for (Developers developer : developers) {
             Long id = developer.getId();
             String name = developer.getName();
-            Gender gender = developer.getGender();
+      //      Gender gender = developer.getGender();
             int age = developer.getAge();
             BigDecimal salary = developer.getSalary();
 
-            System.out.println(String.format("  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
+            System.out.println(String.format("  id = %d, name = %s, age = %s, salary = %s", id, name, age, salary));
         }
 
 

@@ -26,8 +26,8 @@ public class Developers {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "gender")
-    private Gender gender;
+//    @Column(name = "gender")
+//    private Gender gender;
 
     @Column(name = "age")
     private Integer age;
@@ -49,7 +49,7 @@ public class Developers {
     public Developers(Long id, String name, Gender gender, Integer age, BigDecimal salary) {
         this.id = id;
         this.name = name;
-        this.gender = gender;
+//        this.gender = gender;
         this.age = age;
         this.salary = salary;
     }
@@ -65,9 +65,9 @@ public class Developers {
         return this.name;
     }
 
-    public Gender getGender() {
+/*    public Gender getGender() {
         return this.gender;
-    }
+    }*/
 
     public Integer getAge() {
         return this.age;
@@ -92,9 +92,9 @@ public class Developers {
         this.name = name;
     }
 
-    public void setGender(Gender gender) {
+/*    public void setGender(Gender gender) {
         this.gender = gender;
-    }
+    }*/
 
     public void setAge(Integer age) {
         this.age = age;
@@ -113,7 +113,7 @@ public class Developers {
 
     @Override
     public String toString() {
-        return " Id = " + this.id + " Name =  " + this.name + " Gender = " + this.gender + " Age = " + this.age + " Salary = " + this.salary;
+        return " Id = " + this.id + " Name =  " + this.name + " Age = " + this.age + " Salary = " + this.salary;
     }
 
 
