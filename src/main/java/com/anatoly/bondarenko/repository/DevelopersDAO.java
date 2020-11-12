@@ -2,9 +2,6 @@ package com.anatoly.bondarenko.repository;
 
 import com.anatoly.bondarenko.domain.Developers;
 import com.anatoly.bondarenko.domain.Gender;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.EntityManager;
 
@@ -14,9 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@ToString
-@Data
 public class DevelopersDAO extends GenericDAO <Developers> {
 
     @Override
@@ -83,51 +77,6 @@ public class DevelopersDAO extends GenericDAO <Developers> {
         }
 
 
-/*
-        for (Developers d : developers) {
-            System.out.println("Developer "
-                    + d.getId().toString()
-                    + " "
-                    + d.getName());
-        }
-*/
-
-
-
-/*
-        new Configuration().configure().buildSessionFactory().getCurrentSession();
-        Query query2 = createSQLQuery(query).addEntity(Developers.class);
-
-*/
-
-
-
-        //   List<Object[]> rows = query.list();
-
-/*
-
-        for(Developers row : developers) {
-            Developers developer2 = new Developers();
-
-         //   developer2.setId     (Long.valueOf(row[0].toString()));
-            developer2.setId(Long.valueOf(developers.get(0).toString()));
-            developer2.setName(String.valueOf(developers.get(1).toString()));
-            developer2.setGender(Gender.valueOf(developers.get(2).toString()));
-            developer2.setAge(Integer.valueOf(developers.get(3).toString()));
-            developer2.setSalary(BigDecimal.valueOf(Long.parseLong(developers.get(4).toString())));
-
-            System.out.println(developer2.toString());
-        }
-*/
-
-
-/*
-        for (Iterator<Developers> it = developers.iterator(); it.hasNext();) {
-            Developers developer = (Developers) it.next();
-            System.out.println(developer.toString());
-        }
-*/
-
 
 
       ////  Solve the problem of duplicated sql alias [id]
@@ -138,12 +87,12 @@ public class DevelopersDAO extends GenericDAO <Developers> {
       //  SELECT t.id as table_id, b.id as bench_id FROM table AS t INNER JOIN bench AS b ON (t.bench_id = b.id) INNER JOIN window AS w ON (t.window_id = w.id) INNER JOIN seat AS s ON (s.id = w.target_id)
 
 
-      //  System.out.println(developers);
 
         entityManager.close();
 
         return developers;
     }
+
 
 
 

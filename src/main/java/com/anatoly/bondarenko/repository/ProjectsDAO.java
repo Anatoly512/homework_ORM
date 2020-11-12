@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class ProjectsDAO extends GenericDAO <Projects> {
 
     @Override

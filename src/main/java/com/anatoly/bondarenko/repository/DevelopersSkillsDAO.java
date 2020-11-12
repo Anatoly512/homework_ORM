@@ -11,7 +11,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class DevelopersSkillsDAO {
 
     private Connection connection;

@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class SkillsDAO extends GenericDAO <Skills> {
 
     @Override

@@ -2,13 +2,10 @@ package com.anatoly.bondarenko.service;
 
 import com.anatoly.bondarenko.repository.DevelopersDAO;
 import com.anatoly.bondarenko.domain.Developers;
-import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 
-@ToString
-@Data
+
 public class DevelopersService {
 
     private final DevelopersDAO developersDAO;

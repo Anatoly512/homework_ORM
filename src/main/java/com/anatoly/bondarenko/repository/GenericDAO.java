@@ -2,9 +2,7 @@ package com.anatoly.bondarenko.repository;
 
 import com.anatoly.bondarenko.Main;
 
-import lombok.Data;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +13,6 @@ import java.sql.*;
 import java.util.List;
 
 
-@Data
 public abstract class GenericDAO <K> {
 
     public Logger logger = LoggerFactory.getLogger("Logger");
