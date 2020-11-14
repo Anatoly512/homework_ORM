@@ -97,16 +97,6 @@ public class DevelopersDAO extends GenericDAO <Developers> {
 
 
 
-/*  //  Backup Query
-    public List<Developers> getDevelopersBySkill(String language){
-        EntityManager entityManager = getEntityManager();
-        List<Developers> developers = entityManager.createNativeQuery(String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s' ", language)).getResultList();
-        entityManager.close();
-
-        return developers;
-    }
-*/
-
 
 
     @Override

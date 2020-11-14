@@ -1,7 +1,5 @@
 package com.anatoly.bondarenko.repository;
 
-import com.anatoly.bondarenko.Main;
-
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +19,10 @@ public abstract class GenericDAO <K> {
     EntityManager entityManager;
 
 
-    GenericDAO(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory( "ORM homework" );
+    GenericDAO() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ORM homework");
         entityManager = entityManagerFactory.createEntityManager();
     }
-
-
-
-
-
-
 
 
     protected abstract String createQueryForUpdate(Long id, K value);
@@ -44,10 +36,5 @@ public abstract class GenericDAO <K> {
     protected abstract String getColumnId();
 
 
-
-// Getter  (Lombok почему-то не создал геттер автоматически)
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
 
 }

@@ -18,7 +18,7 @@ public class Companies {
 
     @Id
     @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment",strategy = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
     private Long id;
 
@@ -33,7 +33,6 @@ public class Companies {
     private Set<Projects> projects = new HashSet<Projects>();
 
 
-
     public Companies(Long id, String companyName) {
         this.id = id;
         this.companyName = companyName;
@@ -44,28 +43,7 @@ public class Companies {
     }
 
 
-// getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
-
-    public String getCompanyName() {
-        return this.companyName;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-
-//  setters
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 
 }
-
 

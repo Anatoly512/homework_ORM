@@ -63,55 +63,6 @@ public class Developers {
     }
 
 
-// getters
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Gender getGender() {
-        return this.gender;
-    }
-
-    public Integer getAge() {
-        return this.age;
-    }
-
-    public BigDecimal getSalary() {
-        return this.salary;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public Set<Skills> getSkills() {
-        return this.skills;
-    }
-
-
-//  setters
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
 
 
@@ -122,3 +73,4 @@ public class Developers {
 
 
 }
+

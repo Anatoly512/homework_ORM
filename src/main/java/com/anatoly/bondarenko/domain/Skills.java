@@ -44,37 +44,7 @@ public class Skills {
     }
 
 
-// getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
 
-    public String getLanguage() {
-        return this.language;
-    }
-
-    public SkillLevel getSkillLevel() {
-        return this.skillLevel;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-
-//  setters
-
-    public void setLanguage(String language) {
-
-        this.language = language;
-    }
-
-    public void setSkillLevel(SkillLevel skillLevel) {
-
-        this.skillLevel = skillLevel;
-    }
-
-    public void setId(Long id) {
-
-        this.id = id;
-    }
 
 
 }
