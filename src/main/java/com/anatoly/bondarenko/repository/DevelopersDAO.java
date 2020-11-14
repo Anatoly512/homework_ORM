@@ -34,7 +34,7 @@ public class DevelopersDAO extends GenericDAO <Developers> {
                                                                 //  Далее поля заполняются через сеттеры в обязательном порядке.
                 developerEntity.setId(resultSet.getLong("id"));
                 developerEntity.setName(resultSet.getString("name"));
-          //      developerEntity.setGender(Gender.valueOf(resultSet.getString("gender").toUpperCase()));
+                developerEntity.setGender(Gender.valueOf(resultSet.getString("gender").toUpperCase()));
                 developerEntity.setAge(resultSet.getInt("age"));
                 developerEntity.setSalary(resultSet.getBigDecimal("salary"));
                 developers.add(developerEntity);

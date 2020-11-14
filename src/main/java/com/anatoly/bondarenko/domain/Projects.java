@@ -72,41 +72,6 @@ public class Projects {
 
 
 
-// getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
 
-    public String getProjectsName() {
-        return this.projectsName;
-    }
-
-    public BigDecimal getCost() {
-        return this.cost;
-    }
-
-    public Date getDate() {
-        return this.date;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-
-//  setters
-
-    public void setProjectsName(String projectsName) {
-        this.projectsName = projectsName;
-    }
-
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

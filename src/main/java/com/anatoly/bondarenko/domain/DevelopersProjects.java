@@ -26,34 +26,6 @@ public class DevelopersProjects {
     }
 
 
-    // getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Integer getAmountOfDevelopers() {
-        return this.amountOfDevelopers;
-    }
-
-    public Date getDate() {
-        return this.date;
-    }
-
-
-//  setters
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setamountOfDevelopers(Integer amountOfDevelopers) {
-        this.amountOfDevelopers = amountOfDevelopers;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
 
 

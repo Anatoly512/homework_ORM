@@ -41,34 +41,7 @@ public class DevelopersSkills {
     }
 
 
-    // getters  (Lombok почему-то не создал их автоматически, поэтому по старинке)
 
-    public Integer getDevelopersId() {
-        return this.developersId;
-    }
-
-    public Integer getSkillsId() {
-        return this.skillsId;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-
-//  setters
-
-    public void setDevelopersId(Integer developersId) {
-        this.developersId = developersId;
-    }
-
-    public void setSkillsId(Integer skillsId) {
-        this.skillsId = skillsId;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 
 }

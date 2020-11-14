@@ -53,7 +53,7 @@ public class Developers {
     public Developers(Long id, String name, Gender gender, Integer age, BigDecimal salary) {
         this.id = id;
         this.name = name;
-//        this.gender = gender;
+        this.gender = gender;
         this.age = age;
         this.salary = salary;
     }
