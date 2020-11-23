@@ -84,9 +84,11 @@ public class Main {
         String skillLevel = String.valueOf(SkillLevel.MIDDLE);
         displayEnities(developersService.getDevelopersByLevel(skillLevel), "MIDDLE LEVEL DEVELOPERS : ");
 
+        System.out.println();
+        System.out.println(developersDAO.getAllDevelopersFromProject(1L));
 
-
-
+        System.out.println();
+        System.out.println(developersService.sumOfSalary(4L));
 
 
   }

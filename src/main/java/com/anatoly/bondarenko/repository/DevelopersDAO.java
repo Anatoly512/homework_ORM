@@ -77,8 +77,8 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
 
     public List<Developers>  getAllDevelopersFromProject(Long id){
         EntityManager entityManager = getEntityManager();
-        List<Developers> developers = entityManager.createNativeQuery("SELECT * FROM developers_projects as dp JOIN developers as d on dp.developer_id = d.developers_id WHERE project_id = " + id, Developers.class).getResultList();
-        entityManager.close();
+        List<Developers> developers = entityManager.createNativeQuery(String.format("SELECT * FROM developers_projects as dp JOIN developers as d on dp.developers_id = d.id WHERE projects_id = '%s'", id), Developers.class).getResultList();
+      //  entityManager.close();
         return developers;
     }
 
@@ -86,7 +86,7 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
 
     public List<BigDecimal> getSumSalaryOfDevelopers(Long id){
         EntityManager entityManager = getEntityManager();
-        List<BigDecimal> sum = entityManager.createNativeQuery(String.format("SELECT sum(salary) FROM developers_projects pd inner join projects p on pd.project_id = p.project_id inner join developers d on pd.developer_id = d.developers_id where p.project_id = %d", id), BigDecimal.class).getResultList();
+        List<BigDecimal> sum = (List<BigDecimal>) entityManager.createNativeQuery(String.format("SELECT sum(salary) FROM developers_projects dp INNER JOIN projects p on dp.projects_id = p.id INNER JOIN developers as d on dp.developers_id = d.id WHERE p.id = %d", id)).getResultList();
         entityManager.close();
 
         return sum;
