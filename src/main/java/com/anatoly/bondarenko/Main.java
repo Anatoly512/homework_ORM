@@ -84,11 +84,15 @@ public class Main {
         String skillLevel = String.valueOf(SkillLevel.MIDDLE);
         displayEnities(developersService.getDevelopersByLevel(skillLevel), "MIDDLE LEVEL DEVELOPERS : ");
 
+        long numberOfProject = 1L;
         System.out.println();
-        System.out.println(developersDAO.getAllDevelopersFromProject(1L));
+        System.out.println(developersDAO.getAllDevelopersFromProject(numberOfProject) + "\n");
 
-        System.out.println();
-        System.out.println(developersService.sumOfSalary(4L));
+        numberOfProject = 4L;
+        System.out.println("\nSum of salary of all developers in project # " + numberOfProject + " : " + developersService.sumOfSalary(numberOfProject));
+
+
+
 
 
   }
