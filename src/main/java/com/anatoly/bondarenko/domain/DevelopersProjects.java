@@ -1,32 +1,39 @@
 package com.anatoly.bondarenko.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Date;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 @Data
+@Entity
+@Table(name = "developers_projects")
 public class DevelopersProjects {
 
-    private String name;
-    private Integer amountOfDevelopers;
-    private Date date;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
 
-    public DevelopersProjects(String name, Integer amountOfDevelopers) {
-        this.name = name;
-        this.amountOfDevelopers = amountOfDevelopers;
-    }
+    @Column(name = "projects_id")
+    private Integer projects_id;
 
-    public DevelopersProjects(String name, Integer amountOfDevelopers, Date date) {
-        this.name = name;
-        this.amountOfDevelopers = amountOfDevelopers;
-        this.date = date;
-    }
+    @Column(name = "developers_id")
+    private Integer developers_id;
 
-    DevelopersProjects() {
-    }
+/*
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Projects> projects = new HashSet<>();
 
-
+*/
 
 
 }

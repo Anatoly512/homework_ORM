@@ -28,7 +28,7 @@ public class Customers {
     private String name;
 
     @ManyToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-    private Set<Projects> projects = new HashSet<>();
+    private Set<Projects> customers = new HashSet<>();
 
 
     public Customers(Long id, String name) {

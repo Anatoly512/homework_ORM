@@ -2,6 +2,7 @@ package com.anatoly.bondarenko.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "developers_skills")
@@ -29,15 +31,19 @@ public class DevelopersSkills {
     private Integer skillsId;
 
 
+/*
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Developers> developers = new HashSet<>();
+
+*/
+
+
 
     public DevelopersSkills(Long id, Integer developersId, Integer skillsId) {
         this.id = id;
         this.developersId = developersId;
         this.skillsId = skillsId;
-    }
-
-    public DevelopersSkills() {     //  Этот конструктор нужен для корректной работы класса DevelopersSkills,
-                                    //  пустые поля потом (после создания объекта) заполняются через сеттеры
     }
 
 

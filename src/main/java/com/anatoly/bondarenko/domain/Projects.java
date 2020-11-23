@@ -2,6 +2,7 @@ package com.anatoly.bondarenko.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "projects")
@@ -20,7 +22,7 @@ public class Projects {
 
     @Id
     @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment",strategy = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
     private Long id;
 
@@ -52,21 +54,7 @@ public class Projects {
     )
     private Set<Developers> developers = new HashSet<>();
 
-    private Integer amount;
-
-
-
-    public Projects(Long id, String projectsName, BigDecimal cost, Date date) {
-        this.id = id;
-        this.projectsName = projectsName;
-        this.cost = cost;
-        this.date = date;
-    }
-
-    public Projects() {     //  Этот конструктор нужен для корректной работы класса DevelopersDAO,
-                            //  пустые поля потом (после создания объекта) заполняются через сеттеры
-    }
-
+//    private Integer amountOfDevelopers;
 
 
 

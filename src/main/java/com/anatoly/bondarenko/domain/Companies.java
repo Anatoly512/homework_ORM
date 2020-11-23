@@ -28,12 +28,12 @@ public class Companies {
     private String companyName;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "companies_projects",
+/*    @JoinTable(name = "companies_projects",
             joinColumns = {@JoinColumn(name = "projects_id")},
             inverseJoinColumns = {@JoinColumn(name = "companies_id")}
     )
-
-    private Set<Projects> projects = new HashSet<Projects>();
+*/
+    private Set<Projects> projects = new HashSet<>();
 
 
     public Companies(Long id, String companyName) {

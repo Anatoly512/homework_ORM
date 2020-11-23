@@ -57,12 +57,7 @@ public class DevelopersDAO extends GenericDAO <Developers> {
 
         EntityManager entityManager = getEntityManager();
 
-      //  String query = (String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language));
-
-     ////   List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers", Developers.class).getResultList();
-
         List<Developers> developers = entityManager.createNativeQuery(String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language), Developers.class).getResultList();
-
 
         System.out.println("number of developers = " + developers.size());
         System.out.println(developers);
@@ -79,14 +74,6 @@ public class DevelopersDAO extends GenericDAO <Developers> {
         }
 
 
-
-
-      ////  Solve the problem of duplicated sql alias [id]
-      //  SELECT t.id , b.id FROM table AS t INNER JOIN bench AS b ON (t.bench_id = b.id) INNER JOIN window AS w ON (t.window_id = w.id)
-
-      //       The select clause did not have unique alias for t.id and b.id. I fixed it by having unique alias as below.
-
-      //  SELECT t.id as table_id, b.id as bench_id FROM table AS t INNER JOIN bench AS b ON (t.bench_id = b.id) INNER JOIN window AS w ON (t.window_id = w.id) INNER JOIN seat AS s ON (s.id = w.target_id)
 
 
 

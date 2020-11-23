@@ -5,7 +5,7 @@ import com.anatoly.bondarenko.domain.*;
 import com.anatoly.bondarenko.service.*;
 import lombok.Data;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.EntityManager;
@@ -33,19 +33,19 @@ public class Main {
     private static final CustomersDAO customersDAO = new CustomersDAO();
     private static final ProjectsDAO projectsDAO = new ProjectsDAO();
     private static final SkillsDAO skillsDAO = new SkillsDAO();
-
     private static final DevelopersSkillsDAO developersSkillsDAO = new DevelopersSkillsDAO();
     private static final DevelopersProjectsDAO developersProjectsDAO = new DevelopersProjectsDAO();
+
     private static final DevelopersService developersService = new DevelopersService(developersDAO);
     private static final CompaniesService companiesService = new CompaniesService(companiesDAO);
     private static final CustomersService customersService = new CustomersService(customersDAO);
     private static final ProjectsService projectsService = new ProjectsService(projectsDAO);
     private static final SkillsService skillsService = new SkillsService(skillsDAO);
-
     private static final DevelopersSkillsService developersSkillsService = new DevelopersSkillsService(developersSkillsDAO);
     private static final DevelopersProjectsService developersProjectsService = new DevelopersProjectsService(developersProjectsDAO);
 
     private static ProgrammLanguages languages = new ProgrammLanguages();
+
 
     public static void main(String[] args) throws SQLException {
 
@@ -53,8 +53,8 @@ public class Main {
         displayDevelopers();
         displayCompanies();
         displayCustomers();
-      //  displayProjects();
-      //  displaySkills();
+    ////   displayProjects();
+    ////   displaySkills();
 
 
 
@@ -68,7 +68,7 @@ public class Main {
         System.out.println(developersService.getDevelopersBySkill(languages.JAVA));
 
 
-      //  showTables.displayEnities(developersService.getDevelopersBySkill(languages.JAVA));
+
 
 
 
@@ -167,7 +167,68 @@ public class Main {
     }
 
 
+/*
 
+  public static void displayProjects() throws SQLException {
+
+        EntityManager entityManager = projectsDAO.getEntityManager();
+
+        try {
+
+            List<Projects> projects = entityManager.createNativeQuery(" SELECT * FROM projects", Projects.class).getResultList();
+
+
+            for (Projects project : projects) {
+                Long id = project.getId();
+                String name = project.getProjectsName();
+                BigDecimal cost =  project.getCost();
+
+                System.out.println(String.format("PROJECTS:  id = %d, project name = %s, cost = %s", id, name, cost));
+            }
+        }
+
+        catch (Exception exception) {
+            projectsDAO.logger.error("Error occurred while getting entities. Exeption message: {}", exception.getMessage());
+            throw new SQLException(String.valueOf(exception));
+        }
+        finally {
+            entityManager.close();
+            System.out.println();
+        }
+
+    }
+
+
+  public static void displaySkills() throws SQLException {
+
+        EntityManager entityManager = skillsDAO.getEntityManager();
+
+        try {
+
+            List<Skills> skills = entityManager.createNativeQuery(" SELECT * FROM skills", Skills.class).getResultList();
+
+
+            for (Skills skill : skills) {
+                Long id = skill.getId();
+                String language = skill.getLanguage();
+                String level = String.valueOf(skill.getSkillLevel());
+
+                System.out.println(String.format("SKILLS:  id = %d, language = %s, level = %s", id, language, level));
+            }
+        }
+
+        catch (Exception exception) {
+            skillsDAO.logger.error("Error occurred while getting entities. Exeption message: {}", exception.getMessage());
+            throw new SQLException(String.valueOf(exception));
+        }
+        finally {
+            entityManager.close();
+            System.out.println();
+        }
+
+    }
+
+*/
 
 
 

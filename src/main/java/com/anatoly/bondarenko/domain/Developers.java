@@ -3,7 +3,6 @@ package com.anatoly.bondarenko.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -49,6 +48,7 @@ public class Developers {
             inverseJoinColumns = {@JoinColumn(name = "skills_id")}
     )
     private Set<Skills> skills = new HashSet<>();
+
 
 
     public Developers(Long id, String name, Gender gender, Integer age, BigDecimal salary) {
