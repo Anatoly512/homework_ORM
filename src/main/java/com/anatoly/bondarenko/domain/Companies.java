@@ -2,6 +2,7 @@ package com.anatoly.bondarenko.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "companies")
@@ -30,6 +32,7 @@ public class Companies {
             joinColumns = {@JoinColumn(name = "projects_id")},
             inverseJoinColumns = {@JoinColumn(name = "companies_id")}
     )
+
     private Set<Projects> projects = new HashSet<Projects>();
 
 
@@ -38,9 +41,8 @@ public class Companies {
         this.companyName = companyName;
     }
 
-    public Companies() {     //  Этот конструктор нужен для корректной работы класса CompaniesDAO,
-                             //  пустые поля потом (после создания объекта) заполняются через сеттеры
-    }
+
+
 
 
 

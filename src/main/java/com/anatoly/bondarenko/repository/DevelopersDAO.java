@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DevelopersDAO extends GenericDAO <Developers> {
+
 
     @Override
     protected String createQueryForUpdate(Long id, Developers developers) {
@@ -52,14 +54,14 @@ public class DevelopersDAO extends GenericDAO <Developers> {
 
 
     public List<Developers> getDevelopersBySkill(String language){
+
         EntityManager entityManager = getEntityManager();
 
       //  String query = (String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language));
 
-      //  String query = (String.format(" SELECT * FROM developers"));
+     ////   List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers", Developers.class).getResultList();
 
-
-        List<Developers> developers = entityManager.createNativeQuery(" SELECT * FROM developers", Developers.class).getResultList();
+        List<Developers> developers = entityManager.createNativeQuery(String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language), Developers.class).getResultList();
 
 
         System.out.println("number of developers = " + developers.size());

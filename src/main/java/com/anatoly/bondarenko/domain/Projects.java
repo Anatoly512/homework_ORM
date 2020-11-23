@@ -37,8 +37,6 @@ public class Projects {
     private Set<Companies> companies = new HashSet<Companies>();
 
 
-/*  //  таблица Customers пока еще нуждается в маппинге
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "customers_projects",
             joinColumns = {@JoinColumn(name = "projects_id")},
@@ -46,7 +44,6 @@ public class Projects {
     )
     private Set<Customers> customers = new HashSet<>();
 
-*/
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "developers_projects",

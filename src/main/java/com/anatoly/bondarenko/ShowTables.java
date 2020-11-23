@@ -20,60 +20,6 @@ public class ShowTables {
 
 /*
 
-    public void displayDevelopers(DevelopersDAO developersDAO) throws SQLException {
-        try {
-            Connection connection;
-            Statement statement;
-
-            connection = DriverManager.getConnection(Main.getURL(), Main.getUser(), Main.getPassword());
-            statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM developers");
-
-            while (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                String genderString = resultSet.getString("gender");
-                Gender gender = Gender.valueOf(genderString);
-                int age = resultSet.getInt("age");
-                BigDecimal salary = resultSet.getBigDecimal("salary");
-                System.out.println(String.format(" DEVELOPERS:  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
-            }
-        } catch (SQLException exception) {
-            developersDAO.logger.error("Error occurred while getting entities. Exeption message: {}", exception.getMessage());
-            throw new SQLException(String.valueOf(exception));
-        }
-        finally {
-            System.out.println();
-        }
-
-    }
-
-
-    public void displayCompanies(CompaniesDAO companiesDAO) throws SQLException {
-        try {
-            Connection connection;
-            Statement statement;
-
-            connection = DriverManager.getConnection(Main.getURL(), Main.getUser(), Main.getPassword());
-            statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM companies");
-
-            while (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String companyName = resultSet.getString("company_name");
-                System.out.println(String.format(" COMPANIES:  id = %d, company name = %s", id, companyName));
-            }
-        } catch (SQLException exception) {
-            companiesDAO.logger.error("Error occurred while getting entities. Exeption message: {}", exception.getMessage());
-            throw new SQLException(String.valueOf(exception));
-        } finally {
-            System.out.println();
-        }
-
-    }
-
         public void displayCustomers(CustomersDAO customersDAO) throws SQLException {
             try {
                 Connection connection;
@@ -155,6 +101,14 @@ public class ShowTables {
 
 */
 
+
+
+
+///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+
+/*
+
     public void displayEnities(List<Developers> list, String string) {
 
         for (Developers developer : list) {
@@ -206,7 +160,7 @@ public class ShowTables {
 
         }
 
-
+*/
 
 
 

@@ -2,6 +2,7 @@ package com.anatoly.bondarenko.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "skills")
@@ -39,9 +41,6 @@ public class Skills {
         this.skillLevel = skillLevel;
     }
 
-    public Skills() {     //  Этот конструктор нужен для корректной работы класса DevelopersDAO,
-                          //  пустые поля потом (после создания объекта) заполняются через сеттеры
-    }
 
 
 

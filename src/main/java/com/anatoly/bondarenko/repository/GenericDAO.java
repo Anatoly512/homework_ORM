@@ -25,11 +25,21 @@ public abstract class GenericDAO <K> {
     }
 
 
+
+
+
+
+
     protected abstract String createQueryForUpdate(Long id, K value);
 
     protected abstract String createQuery(K value);
 
     protected abstract List<K> convertToList(ResultSet resultSet);
+
+
+
+
+
 
     protected abstract String getTableName();
 

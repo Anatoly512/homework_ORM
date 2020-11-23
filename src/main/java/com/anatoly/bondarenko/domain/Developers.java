@@ -2,6 +2,7 @@ package com.anatoly.bondarenko.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -12,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @EqualsAndHashCode
-@ToString
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "developers")
@@ -58,15 +59,11 @@ public class Developers {
         this.salary = salary;
     }
 
-    public Developers() {     //  Этот конструктор нужен для корректной работы класса DevelopersDAO,
-                              //  пустые поля потом (после создания объекта) заполняются через сеттеры
-    }
 
 
 
 
-
-    @Override
+    @Override                          //  Просто для сравнения, чтобы понять, лучше ли это делает Lombok автоматически (в других классах)
     public String toString() {
         return " Id = " + this.id + " Name =  " + this.name + " Gender = " + gender + " Age = " + this.age + " Salary = " + this.salary;
     }
