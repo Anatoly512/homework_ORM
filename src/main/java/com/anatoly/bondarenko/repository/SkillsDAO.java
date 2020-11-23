@@ -35,7 +35,7 @@ public class SkillsDAO extends GenericDAO <Skills, Long> {
     @Override
     public List<Skills> getAll() {
         EntityManager entityManager = getEntityManager();
-        List<Skills> entities = entityManager.createNativeQuery("SELECT * FROM skills").getResultList();
+        List<Skills> entities = entityManager.createNativeQuery("SELECT * FROM skills", Skills.class).getResultList();
         entityManager.close();
         return entities;
     }

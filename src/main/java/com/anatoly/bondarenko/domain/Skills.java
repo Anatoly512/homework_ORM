@@ -3,7 +3,6 @@ package com.anatoly.bondarenko.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -12,7 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @EqualsAndHashCode
-@ToString
 @NoArgsConstructor
 @Data
 @Entity
@@ -35,6 +33,14 @@ public class Skills {
 
     @ManyToMany(mappedBy = "skills", cascade = CascadeType.ALL)
     private Set<Developers> developers = new HashSet<>();
+
+
+
+
+    @Override                          //  Lombok вызывет здесь ошибку с закрытием сессии entityManager
+    public String toString() {
+        return " Id = " + this.id + " Language  =  " + this.language + " SkillLevel = " + this.skillLevel;
+    }
 
 
 

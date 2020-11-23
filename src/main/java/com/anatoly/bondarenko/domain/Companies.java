@@ -3,7 +3,6 @@ package com.anatoly.bondarenko.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @EqualsAndHashCode
-@ToString
 @NoArgsConstructor
 @Data
 @Entity
@@ -28,11 +26,10 @@ public class Companies {
     private String companyName;
 
     @ManyToMany(cascade = CascadeType.ALL)
-/*    @JoinTable(name = "companies_projects",
+    @JoinTable(name = "companies_projects",
             joinColumns = {@JoinColumn(name = "projects_id")},
             inverseJoinColumns = {@JoinColumn(name = "companies_id")}
     )
-*/
     private Set<Projects> projects = new HashSet<>();
 
 
@@ -43,6 +40,11 @@ public class Companies {
 
 
 
+
+    @Override                          //  Lombok вызывет здесь ошибку с закрытием сессии entityManager
+    public String toString() {
+        return " Id = " + this.id + " Company name =  " + this.companyName;
+    }
 
 
 

@@ -58,21 +58,34 @@ public class Main {
 
         System.out.println("\n  HIBERNATE  TASKS  !!!!!!!!!!!!!!!!!!!!!! \n");
 
-        System.out.println(developersService.getDevelopersBySkill(languages.JAVA));
+        developersService.getDevelopersBySkill(languages.JAVA);
 
         System.out.println();
         System.out.println(developersService.findById(3L));
+
+        System.out.println();
+        System.out.println((developersService.findAll()));     // Тестовый вывод таблицы developers
         System.out.println();
 
-        System.out.println((developersService.findAll()));
+        System.out.println((customersService.findAll()));     // Тестовый вывод таблицы customers
         System.out.println();
 
-        System.out.println((customersService.findAll()));
+        System.out.println((companiesService.findAll()));      // Тестовый вывод таблицы companies
         System.out.println();
+
+        // ??? ERROR: Колонки name не найдено в этом ResultSet’’е ???
+        //  System.out.println((projectsService.findAll()));
+        //  System.out.println();
+
+        //   System.out.println((skillsService.findAll()));
+        //   System.out.println();
 
 
         String skillLevel = String.valueOf(SkillLevel.MIDDLE);
         displayEnities(developersService.getDevelopersByLevel(skillLevel), "MIDDLE LEVEL DEVELOPERS : ");
+
+
+
 
 
 
@@ -169,6 +182,8 @@ public class Main {
         }
 
     }
+
+
 
 
 /*

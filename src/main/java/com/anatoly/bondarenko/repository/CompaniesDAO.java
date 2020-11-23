@@ -35,7 +35,7 @@ public class CompaniesDAO extends GenericDAO <Companies, Long> {
     @Override
     public List<Companies> getAll() {
         EntityManager entityManager = getEntityManager();
-        List<Companies> entities = entityManager.createNativeQuery("SELECT * FROM companies").getResultList();
+        List<Companies> entities = entityManager.createNativeQuery("SELECT * FROM companies", Companies.class).getResultList();
         entityManager.close();
         return entities;
     }

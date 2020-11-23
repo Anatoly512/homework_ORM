@@ -1,5 +1,6 @@
 package com.anatoly.bondarenko.repository;
 
+import com.anatoly.bondarenko.domain.Customers;
 import com.anatoly.bondarenko.domain.Projects;
 import lombok.Data;
 
@@ -40,7 +41,7 @@ public class ProjectsDAO extends GenericDAO <Projects, Long> {
     @Override
     public List<Projects> getAll() {
         EntityManager entityManager = getEntityManager();
-        List<Projects> entities = entityManager.createNativeQuery("SELECT * FROM projects").getResultList();
+        List<Projects> entities = (List<Projects>) entityManager.createNativeQuery("SELECT * FROM projects", Projects.class).getResultList();
         entityManager.close();
         return entities;
     }

@@ -1,6 +1,5 @@
 package com.anatoly.bondarenko.repository;
 
-import com.anatoly.bondarenko.domain.Customers;
 import com.anatoly.bondarenko.domain.Developers;
 import com.anatoly.bondarenko.domain.Gender;
 
@@ -72,21 +71,25 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     }
 
 
+///////////////////////////////////////////////////////////////////////////////////
 
 
-    public List<BigDecimal> getSumSalaryOfDevelopers(Long id){
-        EntityManager entityManager = getEntityManager();
-        List<BigDecimal> sum = entityManager.createNativeQuery(String.format("SELECT sum(salary) FROM developers_projects pd inner join projects p on pd.project_id = p.project_id inner join developers d on pd.developer_id = d.developers_id where p.project_id = %d",id)).getResultList();
-        entityManager.close();
-
-        return sum;
-    }
 
     public List<Developers>  getAllDevelopersFromProject(Long id){
         EntityManager entityManager = getEntityManager();
         List<Developers> developers = entityManager.createNativeQuery("SELECT * FROM developers_projects as dp JOIN developers as d on dp.developer_id = d.developers_id WHERE project_id = " + id, Developers.class).getResultList();
         entityManager.close();
         return developers;
+    }
+
+
+
+    public List<BigDecimal> getSumSalaryOfDevelopers(Long id){
+        EntityManager entityManager = getEntityManager();
+        List<BigDecimal> sum = entityManager.createNativeQuery(String.format("SELECT sum(salary) FROM developers_projects pd inner join projects p on pd.project_id = p.project_id inner join developers d on pd.developer_id = d.developers_id where p.project_id = %d", id), BigDecimal.class).getResultList();
+        entityManager.close();
+
+        return sum;
     }
 
 
@@ -117,7 +120,7 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     @Override
     public List<Developers> getAll() {
         EntityManager entityManager = getEntityManager();
-        List<Developers> entities = (List<Developers>) entityManager.createNativeQuery("SELECT * FROM developers").getResultList();
+        List<Developers> entities = (List<Developers>) entityManager.createNativeQuery("SELECT * FROM developers", Developers.class).getResultList();
      //   entityManager.close();
         return entities;
     }

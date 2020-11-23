@@ -3,7 +3,6 @@ package com.anatoly.bondarenko.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @EqualsAndHashCode
-@ToString
 @NoArgsConstructor
 @Data
 @Entity
@@ -40,6 +38,15 @@ public class Projects {
 
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "developers_projects",
+            joinColumns = {@JoinColumn(name = "projects_id")},
+            inverseJoinColumns = {@JoinColumn(name = "developers_id")}
+    )
+    private Set<Developers> developers = new HashSet<>();
+
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "customers_projects",
             joinColumns = {@JoinColumn(name = "projects_id")},
             inverseJoinColumns = {@JoinColumn(name = "customers_id")}
@@ -47,16 +54,18 @@ public class Projects {
     private Set<Customers> customers = new HashSet<>();
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "developers_projects",
-            joinColumns = {@JoinColumn(name = "projects_id")},
-            inverseJoinColumns = {@JoinColumn(name = "developers_id")}
-    )
-    private Set<Developers> developers = new HashSet<>();
 
-//    private Integer amountOfDevelopers;
+    private Integer amountOfDevelopers;
 
 
 
+
+    @Override                          //  Lombok вызывет здесь ошибку с закрытием сессии entityManager
+    public String toString() {
+        return " Id = " + this.id + " Projects name =  " + this.projectsName + " Cost = " + this.cost + " Date = " + this.date;
+    }
+
+
+//(exclude = "customers_projects")
 
 }

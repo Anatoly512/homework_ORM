@@ -34,7 +34,7 @@ public class CustomersDAO extends GenericDAO <Customers, Long> {
     @Override
     public List<Customers> getAll() {
         EntityManager entityManager = getEntityManager();
-        List<Customers> entities = (List<Customers>) entityManager.createNativeQuery("SELECT * FROM customers").getResultList();
+        List<Customers> entities = (List<Customers>) entityManager.createNativeQuery("SELECT * FROM customers", Customers.class).getResultList();
         entityManager.close();
         return entities;
     }

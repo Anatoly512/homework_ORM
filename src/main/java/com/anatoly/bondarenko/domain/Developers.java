@@ -3,7 +3,6 @@ package com.anatoly.bondarenko.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -13,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @EqualsAndHashCode
-//@ToString
 @NoArgsConstructor
 @Data
 @Entity
@@ -65,9 +63,10 @@ public class Developers {
 
 
 
-    @Override                          //  Просто для сравнения, чтобы понять, лучше ли это делает Lombok автоматически (в других классах)
+
+    @Override                          //  Lombok вызывет здесь ошибку с закрытием сессии entityManager
     public String toString() {
-        return " Id = " + this.id + " Name =  " + this.name + " Gender = " + gender + " Age = " + this.age + " Salary = " + this.salary;
+        return " Id = " + this.id + " Name =  " + this.name + " Gender = " + this.gender + " Age = " + this.age + " Salary = " + this.salary;
     }
 
 
