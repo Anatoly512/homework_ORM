@@ -3,10 +3,7 @@ package com.anatoly.bondarenko;
 import com.anatoly.bondarenko.repository.*;
 import com.anatoly.bondarenko.domain.*;
 import com.anatoly.bondarenko.service.*;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,8 +13,6 @@ import java.sql.*;
 import java.util.Date;
 import java.util.List;
 
-@ToString
-@Data
 public class Main {
 
     @Getter
@@ -58,8 +53,6 @@ public class Main {
 
 
 
-
-
         ///////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////
 
@@ -67,8 +60,19 @@ public class Main {
 
         System.out.println(developersService.getDevelopersBySkill(languages.JAVA));
 
+        System.out.println();
+        System.out.println(developersService.findById(3L));
+        System.out.println();
+
+        System.out.println((developersService.findAll()));
+        System.out.println();
+
+        System.out.println((customersService.findAll()));
+        System.out.println();
 
 
+        String skillLevel = String.valueOf(SkillLevel.MIDDLE);
+        displayEnities(developersService.getDevelopersByLevel(skillLevel), "MIDDLE LEVEL DEVELOPERS : ");
 
 
 
@@ -131,7 +135,7 @@ public class Main {
             throw new SQLException(String.valueOf(exception));
         }
         finally {
-            entityManager.close();
+          //  entityManager.close();
             System.out.println();
         }
 
@@ -160,7 +164,7 @@ public class Main {
             throw new SQLException(String.valueOf(exception));
         }
         finally {
-            entityManager.close();
+          //  entityManager.close();
             System.out.println();
         }
 
@@ -234,18 +238,19 @@ public class Main {
 
   //////////////////////////////////////
 
-  /*
-    public void displayEnities(List<Developers> list, String string) {
+    public static void displayEnities(List<Developers> list, String string) {
+
+    System.out.println();
 
     for (Developers developer : list) {
 
         Long id = developer.getId();
         String name = developer.getName();
-        //   Gender gender = developer.getGender();
+        Gender gender = developer.getGender();
         int age = developer.getAge();
         BigDecimal salary = developer.getSalary();
 
-        System.out.println(String.format(string + " id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, age, salary));
+        System.out.println(String.format(string + " id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
 
     }
 
@@ -253,7 +258,9 @@ public class Main {
 
 
     //  Перегрузка метода
-    public void displayEnities(List<Developers> list) {
+    public static void displayEnities(List<Developers> list) {
+
+    System.out.println();
 
     for (Developers developer : list) {
 
@@ -261,18 +268,20 @@ public class Main {
 
         Long id = developer.getId();
         String name = developer.getName();
-        //       Gender gender = developer.getGender();
+        Gender gender = developer.getGender();
         int age = developer.getAge();
         BigDecimal salary = developer.getSalary();
 
-        System.out.println(String.format("  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, age, salary));
+        System.out.println(String.format("  id = %d, name = %s, genger = %s, age = %s, salary = %s", id, name, gender, age, salary));
 
     }
 
 }
 
 
-    public void displayAllEnitiesWithDate(List<DevelopersProjects> list) {
+
+/*
+    public static void displayAllEnitiesWithDate(List<DevelopersProjects> list) {
 
     for (DevelopersProjects developersProjects : list) {
 
@@ -283,10 +292,10 @@ public class Main {
         System.out.println(String.format("  date = %s, name = %s, amount of developers = %s", date, name, amount));
 
     }
-
-}
-
 */
+
+
+
 
 
 }

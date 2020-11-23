@@ -1,46 +1,43 @@
 package com.anatoly.bondarenko.repository;
 
-import com.anatoly.bondarenko.domain.SkillLevel;
 import com.anatoly.bondarenko.domain.Skills;
-import lombok.Data;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
 import java.util.List;
 
-public class SkillsDAO extends GenericDAO <Skills> {
+
+public class SkillsDAO extends GenericDAO <Skills, Long> {
+
+//  String.format("UPDATE skills SET language = '%s', level = '%s' WHERE id = '%d'", skills.getLanguage(), skills.getSkillLevel(), id);
+
+//  String.format("INSERT INTO skills (id, language, level) VALUES ('%s', '%s', '%s')", skills.getId(), skills.getLanguage(), skills.getSkillLevel());
+
 
     @Override
-    protected String createQueryForUpdate(Long id, Skills skills) {
-        return String.format("UPDATE skills SET language = '%s', level = '%s' WHERE id = '%d'", skills.getLanguage(), skills.getSkillLevel(), id);
+    public Skills getById(Long id) {
+        EntityManager entityManager = getEntityManager();
+        Skills entityFromDb = entityManager.find(Skills.class, id);
+        entityManager.close();
+
+        return entityFromDb;
     }
 
-
     @Override
-    protected String createQuery(Skills skills) {
-        return String.format("INSERT INTO skills (id, language, level) VALUES ('%s', '%s', '%s')", skills.getId(), skills.getLanguage(), skills.getSkillLevel());
+    public void remove(Long id) {
+        EntityManager entityManager = getEntityManager();
+        entityManager.getTransaction().begin();
+        Skills entityFromDb = entityManager.find(Skills.class, id);
+        entityManager.remove(entityFromDb);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
-
     @Override
-    protected List<Skills> convertToList(ResultSet resultSet) {
-        List<Skills> skills = new ArrayList<>();
-        try {
-            while (resultSet.next()){
-                Skills skillEntity = new Skills();       //  Пустой конструктор.  Получается, поля будут не заполнены (на этом этапе).
-                                                         //  Далее поля заполняются через сеттеры в обязательном порядке.
-                skillEntity.setId(resultSet.getLong("id"));
-                skillEntity.setLanguage(resultSet.getString("language"));
-                skillEntity.setSkillLevel(SkillLevel.valueOf(resultSet.getString("level").toUpperCase()));
-                skills.add(skillEntity);
-            }
-        }
-        catch (SQLException exception){
-            logger.info("Exeption SQL: {}", exception.getMessage());
-        }
-
-        return skills;
+    public List<Skills> getAll() {
+        EntityManager entityManager = getEntityManager();
+        List<Skills> entities = entityManager.createNativeQuery("SELECT * FROM skills").getResultList();
+        entityManager.close();
+        return entities;
     }
 
 

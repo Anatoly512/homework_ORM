@@ -16,6 +16,25 @@ public class ProjectsService {
     }
 
 
+    public void create(Projects project){
+        projectsDAO.save(project);
+    }
+
+    public void update(Projects project, Long id){
+        projectsDAO.update(project, id);
+    }
+
+    public void delete(Long id) { projectsDAO.remove(id); }
+
+
+    public List<Projects> findAll(){
+        return projectsDAO.getAll();
+    }
+
+    public Projects findById(Long id) { return projectsDAO.getById(id);}
+
+
+    public List<Projects> getProjectFromDB() { return projectsDAO.getProjectsFromDB(); }
 
 
 

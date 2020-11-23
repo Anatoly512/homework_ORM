@@ -28,12 +28,7 @@ public class DevelopersProjects {
     @Column(name = "developers_id")
     private Integer developers_id;
 
-/*
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Projects> projects = new HashSet<>();
-
-*/
 
 
 }

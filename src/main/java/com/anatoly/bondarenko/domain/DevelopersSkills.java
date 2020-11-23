@@ -31,12 +31,6 @@ public class DevelopersSkills {
     private Integer skillsId;
 
 
-/*
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Developers> developers = new HashSet<>();
-
-*/
 
 
 

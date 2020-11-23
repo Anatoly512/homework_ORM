@@ -36,7 +36,7 @@ public class Projects {
     private Date date;
 
     @ManyToMany(mappedBy = "projects", cascade = CascadeType.ALL)
-    private Set<Companies> companies = new HashSet<Companies>();
+    private Set<Companies> companies = new HashSet<>();
 
 
     @ManyToMany(cascade = CascadeType.ALL)

@@ -7,11 +7,9 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.sql.*;
 import java.util.List;
 
-
-public abstract class GenericDAO <K> {
+public abstract class GenericDAO <K, ID> {
 
     public Logger logger = LoggerFactory.getLogger("Logger");
 
@@ -27,16 +25,34 @@ public abstract class GenericDAO <K> {
 
 
 
+    public void save(K k){
+        EntityManager entityManager = getEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(k);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
 
 
 
-    protected abstract String createQueryForUpdate(Long id, K value);
+    public void update(K k, ID id){
+        EntityManager entityManager = getEntityManager();
+        entityManager.getTransaction().begin();
+        K entityFromDb = (K) entityManager.find(Object.class, id);
+        entityManager.merge(k);
+        entityManager.persist(entityFromDb);
+        entityManager.getTransaction().commit();
+        entityManager.close();
 
-    protected abstract String createQuery(K value);
-
-    protected abstract List<K> convertToList(ResultSet resultSet);
+    }
 
 
+
+    public abstract K getById(ID id);
+
+    public abstract void remove(ID id);
+
+    public abstract List<K> getAll();
 
 
 
@@ -44,7 +60,6 @@ public abstract class GenericDAO <K> {
     protected abstract String getTableName();
 
     protected abstract String getColumnId();
-
 
 
 }

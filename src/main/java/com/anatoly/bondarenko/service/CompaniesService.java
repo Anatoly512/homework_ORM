@@ -18,6 +18,23 @@ public class CompaniesService {
 
 
 
+    public void create(Companies company){
+        companiesDAO.save(company);
+    }
+
+    public void update(Companies company, Long id){
+        companiesDAO.update(company,id);
+    }
+
+    public void delete(Long id) { companiesDAO.remove(id); }
+
+
+    public List<Companies> findAll(){
+        return companiesDAO.getAll();
+    }
+
+    public Companies findById(Long id) { return companiesDAO.getById(id);}
+
 
 
 }
