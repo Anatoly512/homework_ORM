@@ -100,7 +100,7 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
 
     try {
 
-        projects = entityManager.createNativeQuery(String.format("SELECT p.date AS pdt, p.projects_name AS pnm, count(dp.developers_id) AS c FROM projects AS p INNER JOIN developers_projects AS dp ON p.id = dp.projects_id ORDER BY c"), Projects.class).getResultList();
+        results = (List<ProjectsResults>) entityManager.createNativeQuery(String.format("SELECT p.date AS pdt, p.projects_name AS pnm, count(dp.developers_id) AS c FROM projects AS p INNER JOIN developers_projects AS dp ON p.id = dp.projects_id GROUP BY pnm"), ProjectsResults.class).getResultList();
 
         ////  Создать новый класс ---  ProjectsResults   !!!!  В формате результата из 3-х полей --  дата - название - число
 
