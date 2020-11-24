@@ -6,15 +6,14 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @EqualsAndHashCode
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "customers")
-public class Customers {
+@Table(name = "customers_projects")
+
+public class CustomersProjects {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -22,26 +21,18 @@ public class Customers {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "projects_id")
+    private Integer projects_id;
 
-    @ManyToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-    private Set<Projects> projects = new HashSet<>();
-
-
-
-    public Customers(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @Column(name = "customers_id")
+    private Integer customers_id;
 
 
 
     @Override                          //  Lombok вызывет здесь ошибку с закрытием сессии entityManager
     public String toString() {
-        return " Id = " + this.id + " Name =  " + this.name;
+        return " Id = " + this.id + " Projects Id =  " + this.projects_id + " Customers Id = " + this.customers_id;
     }
-
 
 
 }

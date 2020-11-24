@@ -28,7 +28,7 @@ public class Skills {
 
     @Enumerated(EnumType.STRING)
     @Type(type = "com.anatoly.bondarenko.domain.SkillLevelPostgresqlEnum")
-    @Column (name = "skillLevel")
+    @Column (name = "level")
     private SkillLevel skillLevel;
 
     @ManyToMany(mappedBy = "skills", cascade = CascadeType.ALL)

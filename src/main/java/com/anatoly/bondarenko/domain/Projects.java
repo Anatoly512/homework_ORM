@@ -24,7 +24,7 @@ public class Projects {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "projects_name")
     private String projectsName;
 
     @Column(name = "cost")
@@ -54,8 +54,14 @@ public class Projects {
     private Set<Customers> customers = new HashSet<>();
 
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "companies_projects",
+            joinColumns = {@JoinColumn(name = "projects_id")},
+            inverseJoinColumns = {@JoinColumn(name = "companies_id")}
+    )
+    private Set<Companies> companies2 = new HashSet<>();
 
-    private Integer amountOfDevelopers;
+
 
 
 
@@ -66,6 +72,5 @@ public class Projects {
     }
 
 
-//(exclude = "customers_projects")
 
 }

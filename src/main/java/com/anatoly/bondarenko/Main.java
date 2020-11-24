@@ -4,6 +4,7 @@ import com.anatoly.bondarenko.repository.*;
 import com.anatoly.bondarenko.domain.*;
 import com.anatoly.bondarenko.service.*;
 import lombok.Getter;
+import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,9 +49,8 @@ public class Main {
         displayDevelopers();
         displayCompanies();
         displayCustomers();
-    ////   displayProjects();
-    ////   displaySkills();
-
+        displayProjects();
+        displaySkills();
 
 
         ///////////////////////////////////////////////////////
@@ -58,40 +58,34 @@ public class Main {
 
         System.out.println("\n  HIBERNATE  TASKS  !!!!!!!!!!!!!!!!!!!!!! \n");
 
-        developersService.getDevelopersBySkill(languages.JAVA);
+        showAllTables();   //  Тестовый вывод всех таблиц
+
+
+        developersService.getDevelopersBySkill(languages.JAVA);      //  Найти всех разработчиков с навыками определенного языка программирования
 
         System.out.println();
-        System.out.println(developersService.findById(3L));
+        System.out.println(developersService.findById(3L));    //  Найти разработчика по Id
 
+
+        //  Найти всех разработчиков с определенным уровнем навыка языка программирования
         System.out.println();
-        System.out.println((developersService.findAll()));     // Тестовый вывод таблицы developers
-        System.out.println();
-
-        System.out.println((customersService.findAll()));     // Тестовый вывод таблицы customers
-        System.out.println();
-
-        System.out.println((companiesService.findAll()));      // Тестовый вывод таблицы companies
-        System.out.println();
-
-        // ??? ERROR: Колонки name не найдено в этом ResultSet’’е ???
-        //  System.out.println((projectsService.findAll()));
-        //  System.out.println();
-
-        //   System.out.println((skillsService.findAll()));
-        //   System.out.println();
-
-
         String skillLevel = String.valueOf(SkillLevel.MIDDLE);
-        displayEnities(developersService.getDevelopersByLevel(skillLevel), "MIDDLE LEVEL DEVELOPERS : ");
+        displayEnities(developersService.getDevelopersByLevel(skillLevel), "MIDDLE LEVEL DEVELOPER : ");
 
-        long numberOfProject = 1L;
+
+        //  Все разработчики определенного проекта  (по Id проекта)
+        long idOfProject = 1L;
         System.out.println();
-        System.out.println(developersDAO.getAllDevelopersFromProject(numberOfProject) + "\n");
-
-        numberOfProject = 4L;
-        System.out.println("\nSum of salary of all developers in project # " + numberOfProject + " : " + developersService.sumOfSalary(numberOfProject));
+        System.out.println("\nВсе разработчики проекта № " + idOfProject + " : " + developersService.getAllDevelopersFromProject(idOfProject) + "\n");
 
 
+        //  Сумма зарплат всех разработчиков определенного проекта
+        idOfProject = 4L;
+        System.out.println("\nSum of salary of all developers in project # " + idOfProject + " : " + developersService.sumOfSalary(idOfProject));
+
+
+
+        System.out.println(developersService.findAllProjectsAndItsAmountOfDevelopers());
 
 
 
@@ -99,7 +93,9 @@ public class Main {
 
 
 
-  ///////  Блок методов представления: вывода таблиц на консоль
+
+
+  ///////  Блок методов представления: вывод таблиц на консоль
 
   public static void displayDevelopers() throws SQLException {
 
@@ -154,7 +150,6 @@ public class Main {
             throw new SQLException(String.valueOf(exception));
         }
         finally {
-          //  entityManager.close();
             System.out.println();
         }
 
@@ -183,7 +178,6 @@ public class Main {
             throw new SQLException(String.valueOf(exception));
         }
         finally {
-          //  entityManager.close();
             System.out.println();
         }
 
@@ -191,8 +185,6 @@ public class Main {
 
 
 
-
-/*
 
   public static void displayProjects() throws SQLException {
 
@@ -217,7 +209,6 @@ public class Main {
             throw new SQLException(String.valueOf(exception));
         }
         finally {
-            entityManager.close();
             System.out.println();
         }
 
@@ -247,17 +238,12 @@ public class Main {
             throw new SQLException(String.valueOf(exception));
         }
         finally {
-            entityManager.close();
             System.out.println();
         }
 
     }
 
-*/
 
-
-
-  //////////////////////////////////////
 
     public static void displayEnities(List<Developers> list, String string) {
 
@@ -302,6 +288,7 @@ public class Main {
 
 
 /*
+
     public static void displayAllEnitiesWithDate(List<DevelopersProjects> list) {
 
     for (DevelopersProjects developersProjects : list) {
@@ -313,9 +300,30 @@ public class Main {
         System.out.println(String.format("  date = %s, name = %s, amount of developers = %s", date, name, amount));
 
     }
+
 */
 
 
+    public static void showAllTables() {
+
+        System.out.println();
+        System.out.println((developersService.findAll()));     // Тестовый вывод таблицы developers
+        System.out.println();
+
+        System.out.println((customersService.findAll()));     // Тестовый вывод таблицы customers
+        System.out.println();
+
+        System.out.println((companiesService.findAll()));     // Тестовый вывод таблицы companies
+        System.out.println();
+
+        System.out.println((projectsService.findAll()));      // Тестовый вывод таблицы projects
+        System.out.println();
+
+        System.out.println((skillsService.findAll()));        // Тестовый вывод таблицы skills
+        System.out.println();
+
+
+    }
 
 
 

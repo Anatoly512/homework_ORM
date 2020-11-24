@@ -1,11 +1,12 @@
 package com.anatoly.bondarenko.repository;
 
-import com.anatoly.bondarenko.domain.Developers;
-import com.anatoly.bondarenko.domain.Gender;
+import com.anatoly.bondarenko.domain.*;
 
 import javax.persistence.EntityManager;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DevelopersDAO extends GenericDAO <Developers, Long> {
@@ -26,7 +27,6 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
         List<Developers> developers = entityManager.createNativeQuery(String.format(" SELECT * FROM developers_skills ds INNER JOIN developers d ON ds.developers_id = d.id INNER JOIN skills s ON ds.skills_id = s.id WHERE s.language = '%s'", language), Developers.class).getResultList();
 
         System.out.println("number of " + language + " developers = " + developers.size());
-//      System.out.println(developers);
 
 
         for (Developers developer : developers) {
@@ -40,7 +40,6 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
             System.out.println(String.format("  id = %d, name = %s, gender = %s, age = %s, salary = %s", id, name, gender, age, salary));
         }
 
-    //    entityManager.close();
 
         return developers;
     }
@@ -71,14 +70,12 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     }
 
 
-///////////////////////////////////////////////////////////////////////////////////
-
 
 
     public List<Developers>  getAllDevelopersFromProject(Long id){
         EntityManager entityManager = getEntityManager();
         List<Developers> developers = entityManager.createNativeQuery(String.format("SELECT * FROM developers_projects as dp JOIN developers as d on dp.developers_id = d.id WHERE projects_id = '%s'", id), Developers.class).getResultList();
-      //  entityManager.close();
+
         return developers;
     }
 
@@ -87,13 +84,59 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     public List<BigDecimal> getSumSalaryOfDevelopers(Long id){
         EntityManager entityManager = getEntityManager();
         List<BigDecimal> sum = (List<BigDecimal>) entityManager.createNativeQuery(String.format("SELECT sum(salary) FROM developers_projects dp INNER JOIN projects p on dp.projects_id = p.id INNER JOIN developers as d on dp.developers_id = d.id WHERE p.id = %d", id)).getResultList();
-        entityManager.close();
 
         return sum;
     }
 
 
 
+
+    public List<ProjectsResults> getAllProjectsAndItsAmountOfDevelopers() {
+
+        EntityManager entityManager = getEntityManager();
+        List<Projects> projects = new ArrayList<>();
+        List<ProjectsResults> results = new ArrayList<>();
+        System.out.println();
+
+    try {
+
+        projects = entityManager.createNativeQuery(String.format("SELECT p.date AS pdt, p.projects_name AS pnm, count(dp.developers_id) AS c FROM projects AS p INNER JOIN developers_projects AS dp ON p.id = dp.projects_id ORDER BY c"), Projects.class).getResultList();
+
+        ////  Создать новый класс ---  ProjectsResults   !!!!  В формате результата из 3-х полей --  дата - название - число
+
+
+            for (Projects project : projects) {
+                Date date = project.getDate();
+                String name = project.getProjectsName();
+             // Integer amountOfDevelopers = project.getAmountOfDevelopers();
+
+                System.out.println(String.format("  Date = %s, Name = %s", date, name));
+            }
+
+
+/*
+            while(resultSet.next()){
+                Date date = resultSet.getDate("pdt");
+                String name = resultSet.getString("pn");
+                Integer amountOfDevelopers = resultSet.getInt("c");
+                projectsDevelopers.add(new DevelopersProjects(name, amountOfDevelopers, date));
+            }
+*/
+
+
+
+        }
+
+        catch (Exception exception){
+            System.out.println("Error message : " + exception);
+        }
+
+
+        System.out.println(projects);
+
+        return results;
+
+    }
 
 
 
@@ -102,7 +145,6 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     public Developers getById(Long id) {
         EntityManager entityManager = getEntityManager();
         Developers entityFromDb = entityManager.find(Developers.class, id);
-       // entityManager.close();
 
         return entityFromDb;
     }
@@ -114,14 +156,14 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
         Developers entityFromDb = entityManager.find(Developers.class, id);
         entityManager.remove(entityFromDb);
         entityManager.getTransaction().commit();
-        entityManager.close();
+
     }
 
     @Override
     public List<Developers> getAll() {
         EntityManager entityManager = getEntityManager();
         List<Developers> entities = (List<Developers>) entityManager.createNativeQuery("SELECT * FROM developers", Developers.class).getResultList();
-     //   entityManager.close();
+
         return entities;
     }
 

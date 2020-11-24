@@ -1,5 +1,7 @@
 package com.anatoly.bondarenko.service;
 
+import com.anatoly.bondarenko.domain.Projects;
+import com.anatoly.bondarenko.domain.ProjectsResults;
 import com.anatoly.bondarenko.repository.DevelopersDAO;
 import com.anatoly.bondarenko.domain.Developers;
 
@@ -43,12 +45,13 @@ public class DevelopersService {
 
 
 
-    public List<BigDecimal> sumOfSalary(Long id){ return developersDAO.getSumSalaryOfDevelopers(id);}
+    public List<Developers> getAllDevelopersFromProject(Long id) { return developersDAO.getAllDevelopersFromProject(id);}
 
-    public List<Developers> getDevelopersFromProject(Long id){ return developersDAO.getAllDevelopersFromProject(id);}
+    public List<Developers> getDevelopersByLevel(String level) { return developersDAO.getDevelopersBySkillOfLanguage(level);}
 
-    public List<Developers> getDevelopersByLevel(String level){ return developersDAO.getDevelopersBySkillOfLanguage(level);}
+    public List<BigDecimal> sumOfSalary(Long id) { return developersDAO.getSumSalaryOfDevelopers(id);}
 
+    public List<ProjectsResults> findAllProjectsAndItsAmountOfDevelopers() { return developersDAO.getAllProjectsAndItsAmountOfDevelopers();}
 
 
 }
