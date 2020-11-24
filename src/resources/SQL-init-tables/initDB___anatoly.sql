@@ -98,19 +98,19 @@ CREATE TABLE developers_projects (
 
 );
 
-ALTER TABLE developers_projects ADD CONSTRAINT projects_fk FOREIGN KEY (id_projects)
+ALTER TABLE developers_projects ADD CONSTRAINT projects_fk FOREIGN KEY (projects_id)
 REFERENCES projects (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 
-ALTER TABLE developers_projects ADD CONSTRAINT developers_fk FOREIGN KEY (id_developers)
+ALTER TABLE developers_projects ADD CONSTRAINT developers_fk FOREIGN KEY (developers_id)
 REFERENCES developers (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 
-ALTER TABLE developers_skills ADD CONSTRAINT skills_fk FOREIGN KEY (id_skills)
+ALTER TABLE developers_skills ADD CONSTRAINT skills_fk FOREIGN KEY (skills_id)
 REFERENCES skills (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 
-ALTER TABLE developers_skills ADD CONSTRAINT developers_fk FOREIGN KEY (id_developers)
+ALTER TABLE developers_skills ADD CONSTRAINT developers_fk FOREIGN KEY (developers_id)
 REFERENCES developers (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 

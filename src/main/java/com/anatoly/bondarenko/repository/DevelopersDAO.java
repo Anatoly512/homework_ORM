@@ -95,42 +95,23 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     public List<ProjectsResults> getAllProjectsAndItsAmountOfDevelopers() {
 
         EntityManager entityManager = getEntityManager();
-        List<Objects> array = new ArrayList<Objects>();
-
         List<ProjectsResults> results = new ArrayList<>();
         System.out.println();
 
     try {
 
-        // results = (List<ProjectsResults>) entityManager.createNativeQuery(String.format("SELECT p.date AS pdt, p.projects_name AS pnm, count(dp.developers_id) AS c FROM projects AS p INNER JOIN developers_projects AS dp ON p.id = dp.projects_id GROUP BY pnm"), ProjectsResults.class).getResultList();
 
-        // results = entityManager.createNamedQuery("DevelopersOnProject", ProjectsResults.class).getResultList();
+        results = entityManager.createNamedQuery("DevelopersOnProject").getResultList();
 
-        results = entityManager.createNamedQuery("DevelopersOnProject", ProjectsResults.class).getResultList();
 
-        System.out.println(results);
-
-/*
 
             for (ProjectsResults project : results) {
                 Date date = project.getDate();
                 String name = project.getProjectsName();
-             // Integer amountOfDevelopers = project.getAmountOfDevelopers();
+                Integer amountOfDevelopers = project.getAmountOfDevelopers();
 
-                System.out.println(String.format("  Date = %s, Name = %s", date, name));
+                System.out.println(String.format("  Date = %s, Projects name = %s, Amounts of developers = %s", date, name, amountOfDevelopers));
             }
-*/
-
-
-/*
-            while(resultSet.next()){
-                Date date = resultSet.getDate("pdt");
-                String name = resultSet.getString("pn");
-                Integer amountOfDevelopers = resultSet.getInt("c");
-                projectsDevelopers.add(new DevelopersProjects(name, amountOfDevelopers, date));
-            }
-*/
-
 
 
         }
@@ -139,8 +120,6 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
             System.out.println("Error message : " + exception);
         }
 
-
-        System.out.println(results);
 
         return results;
 
