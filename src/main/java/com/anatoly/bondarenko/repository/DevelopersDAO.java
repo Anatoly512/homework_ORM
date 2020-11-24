@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class DevelopersDAO extends GenericDAO <Developers, Long> {
 
@@ -94,24 +95,31 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
     public List<ProjectsResults> getAllProjectsAndItsAmountOfDevelopers() {
 
         EntityManager entityManager = getEntityManager();
-        List<Projects> projects = new ArrayList<>();
+        List<Objects> array = new ArrayList<Objects>();
+
         List<ProjectsResults> results = new ArrayList<>();
         System.out.println();
 
     try {
 
-        results = (List<ProjectsResults>) entityManager.createNativeQuery(String.format("SELECT p.date AS pdt, p.projects_name AS pnm, count(dp.developers_id) AS c FROM projects AS p INNER JOIN developers_projects AS dp ON p.id = dp.projects_id GROUP BY pnm"), ProjectsResults.class).getResultList();
+        // results = (List<ProjectsResults>) entityManager.createNativeQuery(String.format("SELECT p.date AS pdt, p.projects_name AS pnm, count(dp.developers_id) AS c FROM projects AS p INNER JOIN developers_projects AS dp ON p.id = dp.projects_id GROUP BY pnm"), ProjectsResults.class).getResultList();
 
-        ////  Создать новый класс ---  ProjectsResults   !!!!  В формате результата из 3-х полей --  дата - название - число
+        // results = entityManager.createNamedQuery("DevelopersOnProject", ProjectsResults.class).getResultList();
 
+        results = entityManager.createNamedQuery("DevelopersOnProject", ProjectsResults.class).getResultList();
 
-            for (Projects project : projects) {
+        System.out.println(results);
+
+/*
+
+            for (ProjectsResults project : results) {
                 Date date = project.getDate();
                 String name = project.getProjectsName();
              // Integer amountOfDevelopers = project.getAmountOfDevelopers();
 
                 System.out.println(String.format("  Date = %s, Name = %s", date, name));
             }
+*/
 
 
 /*
@@ -132,7 +140,7 @@ public class DevelopersDAO extends GenericDAO <Developers, Long> {
         }
 
 
-        System.out.println(projects);
+        System.out.println(results);
 
         return results;
 

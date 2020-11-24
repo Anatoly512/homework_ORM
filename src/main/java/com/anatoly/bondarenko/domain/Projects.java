@@ -15,6 +15,26 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
+
+@NamedNativeQuery(
+        name = "DevelopersOnProject",
+        query = "SELECT p.date pdt, p.projects_name pnm, count(dp.developers_id) c FROM projects p INNER JOIN developers_projects dp ON p.id = dp.projects_id GROUP BY p.id",
+        resultSetMapping = "ProjectsResultsMapping")
+
+@SqlResultSetMapping(
+        name = "ProjectsResultsMapping",
+        classes = {
+                @ConstructorResult(
+                        columns = {
+                                @ColumnResult(name = "pdt", type = Date.class),
+                                @ColumnResult(name = "pnm", type = String.class),
+                                @ColumnResult(name = "c", type = Integer.class)
+                        },
+                        targetClass = ProjectsResults.class
+                )
+        }
+)
+
 @Table(name = "projects")
 public class Projects {
 
